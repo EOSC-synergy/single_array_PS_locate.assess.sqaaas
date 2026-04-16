@@ -1,0 +1,64 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: feature/pynblint_fix
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/stevenjgibbons/single_array_PS_locate:
+      branch: main
+      repo: https://github.com/stevenjgibbons/single_array_PS_locate/
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/stevenjgibbons/single_array_PS_locate git:
+        commands:
+        - /usr/bin/env sh .sqa/script.wheezy-dandelion-monster.sh
+        container: qc.acc_skanky-sangria-lion
+  QC.Doc:
+    repos:
+      github.com/stevenjgibbons/single_array_PS_locate find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.stealthy-orange-dollar.sh
+        container: qc.doc_smelly-eggplant-barracuda
+      github.com/stevenjgibbons/single_array_PS_locate git:
+        commands:
+        - /usr/bin/env sh .sqa/script.paltry-chocolate-quoll.sh
+        container: qc.doc_jumpy-flax-spitz
+      github.com/stevenjgibbons/single_array_PS_locate markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.nippy-champagne-russel.sh
+        container: qc.doc_woolly-cornflower-antelope
+  QC.Lic:
+    repos:
+      github.com/stevenjgibbons/single_array_PS_locate licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.sloppy-lavender-toad.sh
+        container: qc.lic_seedy-cerise-bee
+  QC.Sec:
+    repos:
+      github.com/stevenjgibbons/single_array_PS_locate bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.pretty-myrtle-lizard.sh
+        container: qc.sec_wiggy-linen-woodlouse
+  QC.Sty:
+    repos:
+      github.com/stevenjgibbons/single_array_PS_locate flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.wheezy-cinnamon-grasshopper.sh
+        container: qc.sty_homey-grey-kingfisher
+  QC.Uni:
+    repos:
+      github.com/stevenjgibbons/single_array_PS_locate pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.skanky-cobalt-quoll.sh
+        container: qc.uni_freaky-goldenrod-warthog
+  QC.Ver:
+    repos:
+      github.com/stevenjgibbons/single_array_PS_locate get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.cheeky-eggplant-swan.sh
+        container: qc.ver_lousy-celadon-dachshund
+timeout: 5400
